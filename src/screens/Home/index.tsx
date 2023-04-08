@@ -1,33 +1,33 @@
+import { useContext, useEffect, useState } from "react";
+
 import { ContainerMovies } from "@components/ContainerMovies";
+
+import MoviesContext from "@context/Store/MovieContext";
 
 import { Container } from "./styles";
 
 export function Home() {
 
-    const movies = [
-        {
-            id: "1",
-            uri: "https://image.tmdb.org/t/p/w300/6GE5FwsQIQKNDWkSEBVIWYx7zCK.jpg"
-        },
-        {
-            id: "2",
-            uri: "https://image.tmdb.org/t/p/w300/6GE5FwsQIQKNDWkSEBVIWYx7zCK.jpg"
-        },
-        {
-            id: "3",
-            uri: "https://image.tmdb.org/t/p/w300/6GE5FwsQIQKNDWkSEBVIWYx7zCK.jpg"
-        },
-        {
-            id: "4",
-            uri: "https://image.tmdb.org/t/p/w300/6GE5FwsQIQKNDWkSEBVIWYx7zCK.jpg"
-        }
-    ]
+    const { getMoviesList } = useContext(MoviesContext)
+
+    const [moviesList, setMoviesList] = useState<Array<{ title: string, items: any }>>([])
+
+    const fetchMovies = async () => {
+        let list = await getMoviesList()
+        setMoviesList(list)
+    }
+
+    useEffect(() => {
+        fetchMovies();
+    }, [])
+
     return (
         <Container>
-            <ContainerMovies category="Originais do Netflix" movies={movies} />
-            <ContainerMovies category="Recomendados para Você" movies={movies} />
-            <ContainerMovies category="Em Alta" movies={movies} />
-            <ContainerMovies category="Romance/Drama" movies={movies} />
+            {
+                moviesList.map((movies) => {
+                    return <ContainerMovies key={movies.title} category={movies.title} movies={movies.items} />
+                })
+            }
         </Container>
     )
 }
