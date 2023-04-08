@@ -6,6 +6,7 @@ import { Montserrat_500Medium, Montserrat_600SemiBold, Montserrat_900Black } fro
 
 import { Home } from "@screens/Home";
 import { Loading } from "@components/Loading";
+import MoviesProvider from "@context/Store/MovieProvider";
 
 
 export default function App() {
@@ -13,8 +14,10 @@ export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Montserrat_500Medium, Montserrat_600SemiBold, Montserrat_900Black });
 
   return (
-    <ThemeProvider theme={theme}>
-      {fontsLoaded ? <Home /> : <Loading />}
-    </ThemeProvider>
+    <MoviesProvider>
+      <ThemeProvider theme={theme}>
+        {fontsLoaded ? <Home /> : <Loading />}
+      </ThemeProvider>
+    </MoviesProvider>
   );
 }
