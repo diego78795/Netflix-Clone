@@ -5,7 +5,7 @@ import { FlatList } from "react-native";
 
 type Props = {
     category: string
-    movies: Array<{ id: string, uri: string }>
+    movies: Array<{ id: string, poster_path: string }>
 }
 
 export function ContainerMovies({ category, movies }: Props) {
@@ -18,7 +18,7 @@ export function ContainerMovies({ category, movies }: Props) {
                 data={movies}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
-                    <MovieCard imageUri={item.uri} />
+                    <MovieCard imageUri={`https://image.tmdb.org/t/p/w300${item.poster_path}`} />
                 )}
                 horizontal
                 showsHorizontalScrollIndicator={false}
