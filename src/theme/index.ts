@@ -6,7 +6,9 @@ export default {
         gray_100: "#C4C4C4",
         gray_300: "#6E6E6E",
         gray_200: "#323232",
-        gray_400: "#121212"
+        gray_400: "#121212",
+
+        red: "#EE1520"
     },
 
     font_family: {
