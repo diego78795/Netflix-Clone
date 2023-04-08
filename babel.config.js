@@ -14,7 +14,7 @@ module.exports = function (api) {
             '@storage': './src/storage',
             '@utils': './src/utils',
             '@context': './src/context',
-            '@service': './src/service',
+            '@services': './src/services',
           }
         }
       ]
