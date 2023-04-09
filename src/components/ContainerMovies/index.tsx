@@ -1,5 +1,7 @@
 import { MovieCard } from "@components/MovieCard";
 
+import { useState } from "react";
+
 import { Container, Title } from "./styles";
 import { FlatList } from "react-native";
 
@@ -9,6 +11,9 @@ type Props = {
 }
 
 export function ContainerMovies({ category, movies }: Props) {
+
+    const [movieSelect, setMovieSelect] = useState("")
+
     return (
         <Container>
             <Title>
@@ -18,7 +23,13 @@ export function ContainerMovies({ category, movies }: Props) {
                 data={movies}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
-                    <MovieCard imageUri={`https://image.tmdb.org/t/p/w300${item.poster_path}`} />
+                    <MovieCard
+                        imageUri={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
+                        onPress={() => {
+                            setMovieSelect(item.id)
+                        }}
+                        active={movieSelect === item.id}
+                    />
                 )}
                 horizontal
                 showsHorizontalScrollIndicator={false}
