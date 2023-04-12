@@ -27,9 +27,15 @@ const apiGenreMovies = async (idGenre: number) => {
     return res.data.results
 }
 
+const apiTv = async (idTv: number) => {
+    const res = await api.get(`/tv/${idTv}?language=pt-BR&api_key=${apiKey}`)
+    return res.data
+  }
+
 export {
     apiOriginals,
     apiTrending,
     apiTopRated,
-    apiGenreMovies
+    apiGenreMovies,
+    apiTv
 };
