@@ -1,6 +1,6 @@
 import { Contaier, Icon } from "./styles";
 
-export function ButtonPlay() {
+export function ButtonPlayCard() {
     return (
         <Contaier>
             <Icon />

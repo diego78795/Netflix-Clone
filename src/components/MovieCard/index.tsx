@@ -1,6 +1,6 @@
 import { TouchableOpacityProps } from "react-native";
 
-import { ButtonPlay } from "@components/ButtonPlay";
+import { ButtonPlayCard } from "@components/ButtonPlayCard";
 
 import { ButtonMenu, ButtonMenuIcon, Card, Container, ContainerActive, ImgMovie, MenuMovie } from "./styles";
 
@@ -17,7 +17,7 @@ export function MovieCard({ imageUri, active = false, ...rest }: Props) {
             </Card>
             {active ?
                 <ContainerActive>
-                    <ButtonPlay />
+                    <ButtonPlayCard />
                     <MenuMovie>
                         <ButtonMenu>
                             <ButtonMenuIcon name="info-outline" />
