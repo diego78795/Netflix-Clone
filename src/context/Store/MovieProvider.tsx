@@ -1,13 +1,22 @@
 
 import { ReactNode } from "react";
 import Context from "./MovieContext";
-import { apiOriginals, apiTrending, apiTopRated, apiGenreMovies } from "../../services/api";
+import { apiOriginals, apiTrending, apiTopRated, apiGenreMovies, apiTv } from "../../services/api";
 
 type Props = {
     children: ReactNode;
 }
 
 const MoviesProvider = ({ children }: Props) => {
+
+    const getFeaturedMovie = async () =>{
+        const movies = await apiOriginals()
+        const randomMovie = Math.floor(Math.random()*(movies.length - 1))
+        const idRandomMovie = movies[randomMovie].id
+        let res = await apiTv(idRandomMovie)
+        return res
+    }
+
     const getMoviesList = async () => {
         return [
             {
@@ -47,7 +56,8 @@ const MoviesProvider = ({ children }: Props) => {
 
     return (
         <Context.Provider value={{
-            getMoviesList
+            getMoviesList,
+            getFeaturedMovie
         }}>
             {children}
         </Context.Provider>
